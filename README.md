@@ -10,19 +10,19 @@ PHP-5.2.17 的 Docker 镜像，基于 CentOS6 + PHP-5.2.17 + Zend Optimizer +  F
 
 ### 2.1 启动一个实例很简单
 
-    docker run -d --name some-php-5.2.17 fifilyu/php-5.2.17-fpm:tag
+    docker run -d --name some-php-5.2.17 jiazhoulvke/php-5.2.17-fpm:tag
 
 此时访问 http://容器IP:8080 能看到 PHP 版本信息。
 
 ### 2.2 使用 Hosting 数据目录启动一个实例
 
-    docker run -d --name some-php-5.2.17 -v /some/content:/data/web/:ro fifilyu/php-5.2.17-fpm:tag
+    docker run -d --name some-php-5.2.17 -v /var/www/html:/var/www/html jiazhoulvke/php-5.2.17-fpm:tag
 
 ### 2.3 启动容器时暴露端口
 
-    docker run -d --name some-php-5.2.17 -p 8080:8080 fifilyu/php-5.2.17-fpm:tag
+    docker run -d --name some-php-5.2.17 -p 80:80 jiazhoulvke/php-5.2.17-fpm:tag
 
-此时访问 http://localhost:8080 能看到 PHP 版本信息。
+此时访问 http://localhost:80 能看到 PHP 版本信息。
 
 ## 3. 镜像说明
 
@@ -80,16 +80,12 @@ Nginx Host 配置文件:
 `/etc/nginx/conf.d`
 
 [NOTE]
-`/etc/nginx/conf.d/example.com.conf` 是默认创建的 Host ，监听 `8080` 端口。
+`/etc/nginx/conf.d/example.com.conf` 是默认创建的 Host ，监听 `80` 端口。
 
 Web 目录:
 
-`/data/web`
+`/var/www/html`
 
-[NOTE]
-`/data/web/example.com` 目录是默认站点的文件目录。
-
-**[NOTE]目前，没有时间做更多工作实现环境变量和数据容器相关设置的简化。每次更新容器数据，需要执行 `docker exec -it 容器名称 bash` 进入正在运行的容器操作。**
 
 ### 4.2 运行目录
 
@@ -118,6 +114,7 @@ Session 目录:
 * xmlrpc
 * xml
 * Zend Optimizer
+* zip
 
 #### 4.3.2 默认禁用
 * calendar
