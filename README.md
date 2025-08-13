@@ -10,19 +10,9 @@ PHP-5.2.17 的 Docker 镜像，基于 CentOS6 + PHP-5.2.17 + Zend Optimizer +  F
 
 ### 2.1 启动一个实例很简单
 
-    docker run -d --name some-php-5.2.17 jiazhoulvke/php-5.2.17-fpm:tag
-
-此时访问 http://容器IP:8080 能看到 PHP 版本信息。
-
-### 2.2 使用 Hosting 数据目录启动一个实例
-
-    docker run -d --name some-php-5.2.17 -v /var/www/html:/var/www/html jiazhoulvke/php-5.2.17-fpm:tag
-
-### 2.3 启动容器时暴露端口
-
-    docker run -d --name some-php-5.2.17 -p 80:80 jiazhoulvke/php-5.2.17-fpm:tag
-
-此时访问 http://localhost:80 能看到 PHP 版本信息。
+```bash
+docker run -d --name some-php-5.2.17 -p 80:80 -v /var/www/html:/var/www/html jiazhoulvke/docker-php-5.2.17-fpm:latest
+```
 
 ## 3. 镜像说明
 
@@ -80,7 +70,7 @@ Nginx Host 配置文件:
 `/etc/nginx/conf.d`
 
 [NOTE]
-`/etc/nginx/conf.d/example.com.conf` 是默认创建的 Host ，监听 `80` 端口。
+`/etc/nginx/conf.d/www.com.conf` 是默认创建的 Host ，监听 `80` 端口。
 
 Web 目录:
 
